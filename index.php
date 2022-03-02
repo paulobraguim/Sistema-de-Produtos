@@ -1,6 +1,5 @@
 <?php
+require "app/models/UserModel.php";
 
-require "app/database/Database.php";
-require "config/config.php";
-
-$c = new Database(DB, USER, PASS);
+$c = new UserModel();
+$c->criarAdministrador();

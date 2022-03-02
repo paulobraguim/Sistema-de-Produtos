@@ -2,6 +2,8 @@
 
 Class Database {
    
+    private $_conn;
+
     public function __Construct($db, $user, $pass){
 
         $this->_db = $db;
@@ -9,12 +11,17 @@ Class Database {
         $this->_pass = $pass;
 
         try {
-            $conn = new PDO('mysql:host=localhost;dbname=' .$this->_db, $this->_user, $this->_pass);
-              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              echo "CONNECTED IN DATABASE";
+              $this->_conn = new PDO('mysql:host=localhost;dbname=' .$this->_db, $this->_user, $this->_pass);
+              $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);    
+              $this->_conn->exec('SET NAMES utf8'); 
+              echo "CONECTADO";
           } catch(PDOException $e) {
               echo 'ERROR: ' . $e->getMessage();
           }
+    }
+
+    public function conectar() {
+        return $this->_conn;
     }
 
 }
