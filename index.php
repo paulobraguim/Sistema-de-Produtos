@@ -1,5 +1,2 @@
 <?php
-require "app/models/UserModel.php";
-
-$c = new UserModel();
-$c->criarAdministrador();
+echo "EM DESENVOLVIMENTO :D";

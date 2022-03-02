@@ -3,7 +3,9 @@
 require "config/config.php";
 require "app/database/Database.php";
 
-Class UserModel {
+Class UserModel extends Model {
+
+    protected $tabela = "tb_usuarios";
 
     public function criarAdministrador(){
 
