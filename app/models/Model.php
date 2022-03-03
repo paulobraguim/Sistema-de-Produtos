@@ -31,5 +31,19 @@ Class Model {
             echo "Nenhum dado encontrado!";
         }
 
-    }    
+    }
+    
+    /*
+        SELECT GENÉRICO 
+    */
+    public function delete($tabela, $campo, $id){
+
+        $conexao = new Database(DB, USER, PASS);
+        $conUser = $conexao->conectar();
+
+        $comando = 'DELETE * FROM '. $tabela. ' WHERE ' . $campo . ' = ' . "'$id'"; 
+        
+        // Em construção
+
+    }
 }
