@@ -13,8 +13,7 @@ Class Database {
         try {
               $this->_conn = new PDO('mysql:host=localhost;dbname=' .$this->_db, $this->_user, $this->_pass);
               $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);    
-              $this->_conn->exec('SET NAMES utf8'); 
-              echo "CONECTADO";
+              $this->_conn->exec('SET NAMES utf8');               
           } catch(PDOException $e) {
               echo 'ERROR: ' . $e->getMessage();
           }

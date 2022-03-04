@@ -1,6 +1,5 @@
 <?php
 
-require "config/config.php";
 require "app/database/Database.php";
 
 Class Model {
@@ -24,11 +23,10 @@ Class Model {
         $rows = $result->fetchAll();
         
         if(count($rows) > 0){
-            echo "<pre>";
-            print_r($rows);
-            echo "</pre>";
+            return $rows;
         }else{
             echo "Nenhum dado encontrado!";
+            die();
         }
 
     }
@@ -38,12 +36,25 @@ Class Model {
     */
     public function delete($tabela, $campo, $id){
 
+        try{
         $conexao = new Database(DB, USER, PASS);
         $conUser = $conexao->conectar();
 
-        $comando = 'DELETE * FROM '. $tabela. ' WHERE ' . $campo . ' = ' . "'$id'"; 
-        
-        // Em construção
+        if($this->select($tabela, $campo, $id)){
+            $comando = $conUser->prepare('DELETE FROM '. $tabela. ' WHERE ' . $campo . ' = ' . $id);         
+       
+            $comando->execute();
+
+            echo "EXCLUIDO";
+
+        }else {
+            echo "NADA ENCONTRADO AQUI";
+            die();
+        }       
+
+       }catch(PDOException $e) {
+            echo "Erro: " . $e->getMessage();      
+       }
 
     }
 }
